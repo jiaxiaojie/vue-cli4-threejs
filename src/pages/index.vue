@@ -5,8 +5,10 @@
 </template>
 
 <script>
-  import clock from '../utils/clock'
   import * as Three from 'three'
+  import clock from '../utils/clock'
+  import init from '../utils/init'
+
   export default {
     name: 'ThreeTest',
     data() {
@@ -17,33 +19,19 @@
         camera: null,
         width: '',
         height: '',
+        initObj:{}
       }
     },
     created () {
       this.canvas = clock.clock()
-      // eslint-disable-next-line no-console
-      console.log(clock.clock())
-      // eslint-disable-next-line no-console
-
       this.$nextTick(() => {
         this.threeStart()
       })
     },
     methods: {
-      initThree () {
-        let container = document.getElementById('container');
-        this.width = document.getElementById('container').clientWidth;
-        this.height = document.getElementById('container').clientHeight;
-        this.renderer = new Three.WebGLRenderer();
-        this.renderer.setSize(this.width, this.height);
-        container.appendChild(this.renderer.domElement);
-      },
       initCamera () {
-        this.camera = new Three.PerspectiveCamera(70, this.width / this.height, 1, 10000);
+        this.camera = new Three.PerspectiveCamera(70, this.initObj.width / this.initObj.height, 1, 10000);
         this.camera.position.z = 400
-      },
-      initScene() {
-        this.scene = new Three.Scene();
       },
       initObject() {
         let geometry = new Three.CubeGeometry(150, 150, 150);
@@ -52,13 +40,7 @@
         this.texture.needsUpdate = true;
         this.mesh = new Three.Mesh( geometry,material );
         this.scene.add( this.mesh );
-
-        window.addEventListener( 'resize', this.onWindowResize, false );
-      },
-      onWindowResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        window.addEventListener( 'resize', init.onWindowResize(this.camera,this.initObj.renderer), false );
       },
       animation () {
         // this.renderer.clear();
@@ -66,12 +48,12 @@
         this.mesh.rotation.y -= 0.01;
         this.mesh.rotation.x -= 0.01;
         window.requestAnimationFrame(this.animation);
-        this.renderer.render(this.scene, this.camera);
+        this.initObj.renderer.render(this.scene, this.camera);
       },
       threeStart () {
-        this.initThree();
+        this.initObj = init.initThree('container',this.renderer,this.width,this.height);
         this.initCamera();
-        this.initScene();
+        this.scene = init.initScene();
         this.initObject();
         this.animation();
       }

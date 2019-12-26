@@ -8,7 +8,6 @@ let clock = function () {
     alert('您的浏览器不支持Canvas无法预览.\n跟我一起说："Fuck Internet Exploer!"');
   } else {
     // eslint-disable-next-line no-inner-declarations
-
     function canvObject() {
       this.x = 0;
       this.y = 0;

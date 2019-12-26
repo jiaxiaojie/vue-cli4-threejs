@@ -4,7 +4,7 @@ module.exports = {
   publicPath:'./',
   outputDir:'dist',
   runtimeCompiler: true,
-  // lintOnSave:true,
+  lintOnSave:false,
   devServer:{
     open:true,
     watchContentBase: true,
