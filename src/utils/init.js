@@ -1,4 +1,5 @@
 import * as Three from 'three'
+import Stats from '../js/Stats'
 let initThree = (container,renderer,width,height) =>{
   let obj = {
     container:container,
@@ -12,8 +13,15 @@ let initThree = (container,renderer,width,height) =>{
   obj.renderer = new Three.WebGLRenderer();
   obj.renderer.setSize(obj.width, obj.height);
   obj.container.appendChild(obj.renderer.domElement);
-  // eslint-disable-next-line no-console
-  console.log(obj)
+  obj.renderer.setClearColor(0xFFFFFF, 1.0);
+
+
+  let stats = new Stats();
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.getElementById(container).appendChild(stats.domElement);
+
   return obj
 }
 let initScene = () =>{
