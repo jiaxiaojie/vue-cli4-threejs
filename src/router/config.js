@@ -1,4 +1,4 @@
-import Hello from '../pages/index'  //引入组件
+import Hello from '../pages/index' // 引入组件
 import mesh from '../pages/loadMesh'
 import multiple from '../pages/multiple'
 export default [
