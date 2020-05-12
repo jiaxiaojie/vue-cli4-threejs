@@ -25,7 +25,7 @@ export default {
       ['modifyBName'] // 相当于this.$store.dispatch('modifyName'),提交这个方法
     ),
     trunToA () {
-      this.$router.push({path: '/componentsA'}) // 路由跳转到A
+      this.$router.push({ path: '/componentsA' }) // 路由跳转到A
     }
   },
   computed: {

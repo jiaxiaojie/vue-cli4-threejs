@@ -3,6 +3,7 @@ import mesh from '../pages/loadMesh'
 import multiple from '../pages/multiple'
 import componentsA from '../pages/componentsA'
 import componentsB from '../pages/componentsB'
+import test from '../pages/test'
 export default [
   {
     path: '/',
@@ -28,5 +29,10 @@ export default [
     path: '/componentsB',
     name: '组件B',
     component: componentsB
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: test
   }
 ]

@@ -11,17 +11,15 @@ import init from '../utils/init'
 
 export default {
   name: 'ThreeTest',
-  data () {
-    return {
-      renderer: null,
-      cube: null,
-      scene: null,
-      camera: null,
-      width: '',
-      height: '',
-      initObj: {}
-    }
-  },
+  data: () => ({
+    renderer: null,
+    cube: null,
+    scene: null,
+    camera: null,
+    width: '',
+    height: '',
+    initObj: {}
+  }),
   created () {
     this.canvas = clock.clock()
     this.$nextTick(() => {
